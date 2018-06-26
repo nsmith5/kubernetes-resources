@@ -9,5 +9,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: gitea
+          serviceName: gitea-http
           servicePort: 3000
