@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitea
+spec:
+  rules:
+  - host: code.nfsmith.ca
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: gitea
+          servicePort: 3000
