@@ -26,12 +26,12 @@ spec:
           value: "/certs/tls.crt"
         - name: REGISTRY_HTTP_TLS_KEY
           value: "/certs/tls.key"
-        # - name: REGISTRY_AUTH
-        #   value: "htpasswd"
-        # - name: REGISTRY_AUTH_HTPASSWD_PATH
-        #   value: "/auth/htpasswd"
-        # - name: REGISTRY_AUTH_HTPASSWD_REALM
-        #   value: "basic-realm"
+        - name: REGISTRY_AUTH
+          value: "htpasswd"
+        - name: REGISTRY_AUTH_HTPASSWD_PATH
+          value: "/auth/htpasswd"
+        - name: REGISTRY_AUTH_HTPASSWD_REALM
+          value: "basic-realm"
         volumeMounts:
         - mountPath: /certs
           name: certs
