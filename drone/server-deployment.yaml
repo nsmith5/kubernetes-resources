@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: drone-server
+  labels:
+    app: drone
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: drone-server
+        app: drone
+    spec:
+      containers:
+      - name: drone-server
+        image: drone/drone:0.8
+        env:
+        - name: "DRONE_HOST"
+          value: https://cicd.nfsmith.ca
+        - name: "DRONE_OPEN"
+          value: "true"
+        - name: "DRONE_GITEA"
+          value: "true"
+        - name: "DRONE_GITEA_URL"
+          value: https://code.nfsmith.ca
+        - name: "DRONE_SECRET"
+          valueFrom:
+              secretKeyRef:
+                name: drone
+                key: secret
+        volumeMounts:
+        - mountPath: /var/lib/drone
+          name: drone-lib
+      volumes:
+      - name: drone-lib
+        hostPath:
+          path: /data/drone/lib

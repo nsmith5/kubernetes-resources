@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: drone
+spec:
+  tls:
+  - hosts:
+    - cicd.nfsmith.ca
+    secretName: tls-certs
+  rules:
+  - host: cicd.nfsmith.ca
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: drone
+          servicePort: 8000
