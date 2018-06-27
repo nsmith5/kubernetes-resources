@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: gitea
 spec:
+  tls:
+  - hosts:
+    - code.nfsmith.ca
+    secretName: tls-certs
   rules:
   - host: code.nfsmith.ca
     http:
