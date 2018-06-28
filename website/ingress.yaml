@@ -1,0 +1,17 @@
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      name: website
+    spec:
+      tls:
+      - hosts:
+        - www.nfsmith.ca
+        secretName: tls-certs
+      rules:
+      - host: www.nfsmith.ca
+        http:
+          paths:
+          - path: /
+            backend:
+              serviceName: website
+              servicePort: 1313

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+  labels:
+    app: website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+      - name: website
+        image: registry.nfsmith.ca/website:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 1313
+      imagePullSecrets:
+      - name: registry
