@@ -1,20 +1,19 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: registry
-  annotations:
-    ingress.kubernetes.io/ssl-passthrough: "true"
-    ingress.kubernetes.io/proxy-body-size: "0"
-spec:
-  tls:
-  - hosts:
-    - registry.nfsmith.ca
-    secretName: tls-certs
-  rules:
-  - host: registry.nfsmith.ca
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: registry
-          servicePort: 443
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      name: registry
+      annotations:
+        ingress.kubernetes.io/ssl-passthrough: "true"
+    spec:
+      tls:
+      - hosts:
+        - registry.nfsmith.ca
+        secretName: tls-certs
+      rules:
+      - host: registry.nfsmith.ca
+        http:
+          paths:
+          - path: /
+            backend:
+              serviceName: registry
+              servicePort: 5000

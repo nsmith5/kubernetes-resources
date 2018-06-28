@@ -18,10 +18,8 @@ spec:
       - name: registry
         image: registry:2
         ports:
-        - containerPort: 443
+        - containerPort: 5000
         env:
-        - name: REGISTRY_HTTP_ADDR
-          value: "0.0.0.0:443"
         - name: REGISTRY_HTTP_TLS_CERTIFICATE
           value: "/certs/tls.crt"
         - name: REGISTRY_HTTP_TLS_KEY
@@ -31,7 +29,7 @@ spec:
         - name: REGISTRY_AUTH_HTPASSWD_PATH
           value: "/auth/htpasswd"
         - name: REGISTRY_AUTH_HTPASSWD_REALM
-          value: "basic-realm"
+          value: "Registry Realm"
         volumeMounts:
         - mountPath: /certs
           name: certs

@@ -10,5 +10,5 @@ spec:
     app: registry
   ports:
   - name: registry
-    port: 443
+    port: 5000
     protocol: TCP
