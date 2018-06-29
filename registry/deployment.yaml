@@ -35,6 +35,8 @@ spec:
           name: certs
         - mountPath: /auth
           name: auth
+        - mountPath: /var/lib/registry
+          name: registry
       volumes:
       - name: certs
         secret:
@@ -42,3 +44,7 @@ spec:
       - name: auth
         secret:
           secretName: registry-auth
+      - name: registry
+        hostPath:
+          type: DirectoryOrCreate
+          path: /data/docker-registry
