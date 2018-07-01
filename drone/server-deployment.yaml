@@ -16,10 +16,14 @@ spec:
       - name: drone-server
         image: drone/drone:0.8
         env:
+        - name: "GIN_MODE"
+          value: "release"
+        - name: "DRONE_DEBUG"
+          value: "false"
         - name: "DRONE_HOST"
           value: https://cicd.nfsmith.ca
         - name: "DRONE_OPEN"
-          value: "true"
+          value: "false"
         - name: "DRONE_GITEA"
           value: "true"
         - name: "DRONE_GITEA_URL"
