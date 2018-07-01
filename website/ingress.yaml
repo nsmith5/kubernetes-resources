@@ -14,4 +14,4 @@
           - path: /
             backend:
               serviceName: website
-              servicePort: 1313
+              servicePort: 3000

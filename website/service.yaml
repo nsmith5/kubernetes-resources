@@ -10,5 +10,5 @@ spec:
     app: website
   ports:
   - name: websote
-    port: 1313
+    port: 3000
     protocol: TCP
