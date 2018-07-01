@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: logspout
+spec:
+  template:
+    metadata:
+      labels:
+        name: logspout
+    spec:
+      containers:
+        - env:
+            - name: ROUTE_URIS
+              value: raw+tcp://oklog:7651
+          image: gliderlabs/logspout
+          name: logspout
+          volumeMounts:
+            - name: log
+              mountPath: /var/run/docker.sock
+      volumes:
+        - name: log
+          hostPath:
+              path: /var/run/docker.sock
