@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nexcloud
+spec:
+  tls:
+  - hosts:
+    - nc.nfsmith.ca
+    secretName: tls-certs
+  rules:
+  - host: nc.nfsmith.ca
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nextcloud
+          servicePort: 80
