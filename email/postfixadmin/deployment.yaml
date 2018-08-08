@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postfixadmin
+spec:
+  selector:
+    matchLabels:
+      app: postfixadmin
+  template:
+    metadata:
+      labels:
+        app: postfixadmin
+    spec:
+      containers:
+      - name: postfixadmin
+        image: hardware/postfixadmin
+        env:
+        - name: DBPASS
+          valueFrom:
+            secretKeyRef:
+              name: mailserver
+              key: dbpass
+        - name: FQDN
+          value: mail.nfsmith.ca
+        - name: DOMAIN
+          value: mail.nfsmith.ca
+        ports:
+        - containerPort: 8888
+

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb
+spec:
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb:10.2
+        env:
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          value: "yes"
+        - name: MYSQL_DATABASE
+          value: postfix
+        - name: MYSQL_USER
+          value: postfix
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mailserver
+              key: dbpass
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: email-mariadb
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: email-mariadb
+        hostPath:
+          type: DirectoryOrCreate
+          path: /data/email/mysql/db
