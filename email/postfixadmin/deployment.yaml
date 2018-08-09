@@ -21,9 +21,9 @@ spec:
               name: mailserver
               key: dbpass
         - name: FQDN
-          value: mail.nfsmith.ca
+          value: nfsmith.ca
         - name: DOMAIN
-          value: mail.nfsmith.ca
+          value: nfsmith.ca
         ports:
         - containerPort: 8888
 

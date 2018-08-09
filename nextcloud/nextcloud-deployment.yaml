@@ -19,7 +19,7 @@ spec:
         image: nextcloud
         env:
         - name: MYSQL_HOST
-          value: "mariadb:3306"
+          value: "nc-mariadb:3306"
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -37,5 +37,5 @@ spec:
       volumes:
       - name: nextcloud-vol
         hostPath:
-          path: /data/nexcloud/server
+          path: /data/nextcloud/server
           type: DirectoryOrCreate

@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mariadb
+  name: nc-mariadb
   labels:
-    app: mariadb
+    app: nc-mariadb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mariadb
+      app: nc-mariadb
   template:
     metadata:
       labels:
-        app: mariadb
+        app: nc-mariadb
     spec:
       containers:
-      - name: mariadb
+      - name: nc-mariadb
         image: mariadb
         env:
         - name: MYSQL_ROOT_PASSWORD
@@ -40,5 +40,5 @@ spec:
       volumes:
       - name: mariadb-vol
         hostPath:
-          path: /data/nexcloud/database
+          path: /data/nextcloud/database
           type: DirectoryOrCreate

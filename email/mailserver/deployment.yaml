@@ -27,9 +27,9 @@ spec:
               name: mailserver
               key: rspamdpass
         - name: FQDN
-          value: mail.nfsmith.ca
+          value: nfsmith.ca
         - name: DOMAIN
-          value: mail.nfsmith.ca
+          value: nfsmith.ca
         ports:
         - containerPort: 25
           hostPort: 25
