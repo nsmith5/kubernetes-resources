@@ -1,17 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: website
+  name: ising
 spec:
   tls:
   - hosts:
-    - www.nfsmith.ca
+    - ising.nfsmith.ca
     secretName: tls-certs
   rules:
-  - host: www.nfsmith.ca
+  - host: ising.nfsmith.ca
     http:
       paths:
       - path: /
         backend:
-          serviceName: website
-          servicePort: 3000
+          serviceName: ising
+          servicePort: 8080
