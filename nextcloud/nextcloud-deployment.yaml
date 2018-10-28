@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nextcloud
-        image: nextcloud:14.0.1
+        image: nextcloud:14.0.3
         env:
         - name: MYSQL_HOST
           value: "nc-mariadb:3306"

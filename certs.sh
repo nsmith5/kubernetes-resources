@@ -6,3 +6,4 @@ certbot certonly \
     -d '*.nfsmith.ca' \
     --work-dir letsencrypt/work --config-dir letsencrypt/config/ \
     --logs-dir letsencrypt/logs/
+

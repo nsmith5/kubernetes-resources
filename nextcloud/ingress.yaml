@@ -1,17 +1,20 @@
-    apiVersion: extensions/v1beta1
-    kind: Ingress
-    metadata:
-      name: nexcloud
-    spec:
-      tls:
-      - hosts:
-        - cloud.nfsmith.ca
-        secretName: tls-certs
-      rules:
-      - host: cloud.nfsmith.ca
-        http:
-          paths:
-          - path: /
-            backend:
-              serviceName: nextcloud
-              servicePort: 80
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nexcloud
+  annotations:
+    ingress.kubernetes.io/config-frontend: |
+      http-response set-header Referrer-Policy strict-origin
+spec:
+  tls:
+  - hosts:
+    - cloud.nfsmith.ca
+    secretName: tls-certs
+  rules:
+  - host: cloud.nfsmith.ca
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nextcloud
+          servicePort: 80
