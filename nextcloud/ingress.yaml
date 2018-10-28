@@ -3,8 +3,12 @@ kind: Ingress
 metadata:
   name: nexcloud
   annotations:
-    ingress.kubernetes.io/config-frontend: |
+    ingress.kubernetes.io/config-backend: |
+      acl ios_carddav path_beg /.well-known/carddav
+      acl ios_caldav path_beg /.well-known/caldav    
       http-response set-header Referrer-Policy strict-origin
+      http-request redirect location https://cloud.nfsmith.ca/remote.php/dav if ios_carddav
+      http-request redirect location https://cloud.nfsmith.ca/remote.php/dav if ios_caldav
 spec:
   tls:
   - hosts:
