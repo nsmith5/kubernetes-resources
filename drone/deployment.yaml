@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: drone-server
+  labels:
+    app: drone
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: drone-server
+        app: drone
+    spec:
+      containers:
+      - name: drone-server
+        image: drone/drone:1.0.0-rc.1
+        env:
+        - name: "DRONE_SERVER_HOST"
+          value: "cicd.nfsmith.ca"
+        - name: "DRONE_SERVER_PROTO"
+          value: "https"
+        - name: "DRONE_TLS_AUTOCERT"
+          value: "false"
+        - name: "DRONE_GITEA_SERVER"
+          value: "https://code.nfsmith.ca"
+        - name: "DRONE_RUNNER_CAPACITY"
+          value: "2"
+        volumeMounts:
+        - mountPath: /var/lib/drone
+          name: drone-lib
+        - mountPath: /var/run/docker.sock
+          name: docker-socket
+      volumes:
+      - name: drone-lib
+        hostPath:
+          path: /data/drone-1/lib
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
